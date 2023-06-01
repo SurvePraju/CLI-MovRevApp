@@ -2,6 +2,7 @@ import mysql.connector
 from mysql.connector import Error
 from prettytable import PrettyTable
 import matplotlib.pyplot as plt
+import maskpass
 
 
 import time,os
@@ -12,12 +13,14 @@ import time,os
 #         os.system("clear")
 #     except:
 #         os.system("cls")
+database=input("Enter Database Name : ")
+passwd=maskpass.askpass(mask="*")
 
 try:
 
-    connect=mysql.connector.connect(host="localhost",user="root",password="carnal",db="books")
+    connect=mysql.connector.connect(host="localhost",user="root",password=passwd,db=database)
 except:
-    connect=mysql.connector.connect(host="localhost",user="dbuser",password="Squ@d123",db="BasicDB")
+    connect=mysql.connector.connect(host="localhost",user="dbuser",password=passwd,db=database)
 c=connect.cursor()
 
 
